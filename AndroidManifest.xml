@@ -16,6 +16,7 @@
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
             android:theme="@style/config_theme"
+            android:name="com.wallpaper.activity.WMApp"
             android:uiOptions="splitActionBarWhenNarrow">
         <activity
                 android:name=".LauncherActivity"

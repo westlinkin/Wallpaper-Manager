@@ -41,7 +41,7 @@ public class HomeActivity extends SherlockFragmentActivity implements OnRestResp
 	private final String KEY_LIST_POSITION = "list_position";
 
 
-	private static ImageLoader mImageLoader;
+	private static ImageLoader mImageLoader = ImageLoader.getInstance();;
 	private ArrayList<NodeCategory> mData;
 	private int mPosition = -1;
 	private boolean mIgnoreSelection = false;
@@ -64,15 +64,9 @@ public class HomeActivity extends SherlockFragmentActivity implements OnRestResp
 					.cacheOnDisc()
 					.build();
 
-			final ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-					.threadPriority(Thread.NORM_PRIORITY - 1)
-					.offOutOfMemoryHandling()
-					.tasksProcessingOrder(QueueProcessingType.FIFO)
-					.defaultDisplayImageOptions(options)
-					.build();
-
-			mImageLoader = ImageLoader.getInstance();
-			mImageLoader.init(config);
+			if (!mImageLoader.isInited()) {
+				WMApp.initImageLoader(this);
+			}
 		}
 	}
 
